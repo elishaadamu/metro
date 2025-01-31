@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* bg #101627 */
+/* card 1e2a3a */
+
+/* text 9e9b9d */
+/* sky 500 */
+/* @utility  */
+
+body {
+    background: #101627;
+    color: #d6d6d6;
+}
+
+/* =========== UTILITIES=================== */
+@utility text-color {
+    color: #d6d6d6;
+}
+
+@utility bg-color {
+    background: #101627;
+}
+@utility soft-bg {
+    background: #1e2a3a;
+}
+
+/* ===============LAYER======================== */
+/* @layer base {
+    h1 {
+        @apply text-text;
+    }
+    h2 {
+        font-size: var(--text-xl);
+    }
+} */
+
+/* ========================================================================================= */
+
+@layer base {
+    h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: white;
+        margin-bottom: 1.5rem;
+    }
+
+    p {
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
+
+    ul {
+        margin-left: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    li {
+        list-style-type: disc;
+        margin-bottom: 0.6rem;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #00a6f4;
+        display: block;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        margin-bottom: 3rem;
+        border-radius: 1rem;
+    }
+
+    .meme {
+        grid-template-columns: calc(100% - 20rem) 20rem;
+    }
+}
