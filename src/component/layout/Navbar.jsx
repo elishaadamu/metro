@@ -6,6 +6,7 @@ import gsap from "gsap";
 import logo from "../../assets/logo.png";
 
 const navItems = [
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     {
         name: "Articles",
@@ -25,7 +26,6 @@ const navItems = [
         ],
     },
     { name: "Speaking", href: "/speaking" },
-    { name: "Uses", href: "/uses" },
 ];
 
 export default function Navbar() {
@@ -44,8 +44,8 @@ export default function Navbar() {
     }, [isOpen]);
 
     return (
-        <nav className="  text-color  fixed top-4 left-0 w-full z-50  px-8">
-            <div className=" px-4 py-2 backdrop-blur-md max-w-[50rem]  mx-auto flex z-[999]  justify-between items-center rounded-4xl bg-[#1e2a3a]/60">
+        <nav className="  text-color  fixed top-4 left-0 w-full z-50  px-4 sm:px-8">
+            <div className=" px-4 py-2 backdrop-blur-md max-w-[50rem]  mx-auto flex z-[999]  justify-between items-center rounded-4xl bg-[#1e2a3a]/50">
                 <NavLink to="/" className=" h-[2.7rem] aspect-square ">
                     <img
                         src={logo}

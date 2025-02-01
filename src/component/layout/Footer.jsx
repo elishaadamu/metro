@@ -39,7 +39,7 @@ export default function Footer() {
                     </a>
                 </div>
 
-                <div className="flex  justify-center space-x-8 my-12 text-sm text-gray-500 ">
+                <div className="flex  justify-center md:space-x-8 my-12 text-sm text-gray-500 flex-wrap gap-4 font-semibold">
                     <a
                         href="/"
                         className="text-color no-underline hover:text-sky-500 transition"
