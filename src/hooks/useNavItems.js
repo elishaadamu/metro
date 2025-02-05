@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import apiClient from "../utils/apiClient";
 
 const fetchNavItems = async () => {
-    const response = await apiClient.get("/pages?populate=*");
+    const response = await apiClient.get("/api/pages?populate=*");
     // console.log(response.data.data);
     return response.data;
 };

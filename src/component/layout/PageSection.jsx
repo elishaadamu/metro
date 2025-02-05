@@ -99,7 +99,7 @@ import SectionLink from "../common/SectionLink";
 import List from "../common/List";
 
 function PageSection({ content }) {
-    console.log("content:", content);
+    // console.log("content:", content.section_image);
 
     return (
         <div className="mb-8">

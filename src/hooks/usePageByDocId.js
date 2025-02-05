@@ -6,7 +6,7 @@ const fetchPageById = async ({ queryKey }) => {
 
     // Fetch the page using document
     const res = await apiClient.get(
-        `/pages/${pageDocId}?populate[sub_page][populate][sub_page_section][populate]=*`
+        `/api/pages/${pageDocId}?populate[sub_page][populate][sub_page_section][populate]=*`
         // `/pages/${pageDocId}?populate[sub_page][populate]=sub_page_section.*`
     );
     // const res = await apiClient.get(`/pages/${pageDocId}?populate=*`);

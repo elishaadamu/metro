@@ -37,12 +37,13 @@ import Navbar from "../component/layout/Navbar";
 import PageSections from "../component/layout/PageSections";
 import Sidebar from "../component/layout/Sidebar";
 import Footer from "../component/layout/Footer";
+import Loading from "../component/common/Loading";
 
 function SubPageTemplate({ pageDocId }) {
     const { data, isLoading, error } = usePageByDocId(pageDocId);
 
-    if (isLoading) return <p>Loading page content...</p>;
-    if (error) return <p>Error loading page: {error.message}</p>;
+    if (isLoading) return <Loading msg="Loading page contents"/>;
+    if (error) return <p className="text-red-500">Error loading page: {error.message}</p>;
 
     // Find the correct sub-page based on the current URL
     const currentPath = window.location.pathname;
@@ -50,7 +51,7 @@ function SubPageTemplate({ pageDocId }) {
         (sub) => data.page_path + sub.sub_page_path === currentPath
     );
 
-    // console.log(currentSubPage.sub_page_section);
+    // console.log(data);
     // console.log(data.sub_page[0].sub_page_section[0].link);
     if (!currentSubPage) return <p>Sub-page not found</p>;
 
@@ -63,7 +64,8 @@ function SubPageTemplate({ pageDocId }) {
 
                 <Sidebar
                     subPages={data?.sub_page}
-                    parentPage={data.page_path}
+                    parentPage={data?.page_path}
+                    pageName={data?.page_name}
                 />
             </div>
 
