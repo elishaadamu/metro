@@ -289,12 +289,15 @@ export default function Navbar() {
             </NavLink>
 
             {navItems.map((item, index) => (
-                <div key={index} className="relative font-semibold">
+                <div
+                    key={index}
+                    className="relative md:flex items-center font-semibold"
+                >
                     {item?.sub_page.length > 0 ? (
                         <NavLink
                             to={item?.page_path}
                             className={({ isActive }) =>
-                                `hover:text-sky-500 text-color flex items-center capitalize justify-between md:justify-center hover:bg-gray-600 md:hover:bg-transparent w-full py-2  ${
+                                `hover:text-sky-500 text-color flex items-center capitalize justify-between md:justify-center hover:bg-gray-600 md:hover:bg-transparent w-full py-2 text-nowrap ${
                                     isActive ? "text-sky-500" : ""
                                 }`
                             }
@@ -314,7 +317,7 @@ export default function Navbar() {
                         <NavLink
                             to={item?.page_path}
                             className={({ isActive }) =>
-                                `hover:text-sky-500 text-color no-underline ${
+                                `hover:text-sky-500 text-color no-underline text-nowrap ${
                                     isActive ? "text-sky-500" : ""
                                 }`
                             }
@@ -323,7 +326,7 @@ export default function Navbar() {
                         </NavLink>
                     )}
                     {item?.sub_page.length > 0 && dropdownOpen === index && (
-                        <div className="md:absolute md:bg-color md:w-fit top-[2.6rem] right-0  ">
+                        <div className="md:absolute md:bg-color md:w-fit top-[2.6rem] right-0   ">
                             {item?.sub_page.map((subItem, subIndex) => (
                                 <NavLink
                                     key={subIndex}
@@ -347,28 +350,8 @@ export default function Navbar() {
 
     return (
         <>
-            {/* <style>
-                {`
-                @media (max-width: 767px) {
-                    .nav-menu {
-                        @apply flex flex-col space-y-2 mt-4 px-4 py-6 rounded-2xl soft-bg;
-                    }
-                    .dropdown-menu {
-                        @apply ml-4 border-l border-gray-600;
-                    }
-                }
-                @media (min-width: 768px) {
-                    .nav-menu {
-                        display: none;
-                    }
-                    .dropdown-menu {
-                        @apply absolute left-0 mt-2 w-40 bg-gray-800 text-white rounded-md shadow-lg ;
-                    }
-                }
-                `}
-            </style> */}
             <nav className="text-color fixed top-4 left-0 w-full z-50 px-4 sm:px-8">
-                <div className="px-4 py-2 backdrop-blur-md max-w-[69rem] mx-auto flex z-[999] justify-between items-center rounded-4xl bg-[#1e2a3a]/50">
+                <div className="px-4 py-2 backdrop-blur-md max-w-[69rem] mx-auto flex z-[999] justify-between gap-4 items-center rounded-4xl bg-[#1e2a3a]/50">
                     <NavLink to="/" className="h-[2.7rem] aspect-square">
                         <img
                             src={logo}
@@ -394,7 +377,7 @@ export default function Navbar() {
                 {isOpen && (
                     <div
                         ref={menuRef}
-                        className=" soft-bg py-8 px-4 mt-4 rounded-2xl md:hidden"
+                        className=" soft-bg py-8 px-4 mt-4 rounded-2xl md:hidden overflow-y-auto"
                     >
                         {renderNavItems()}
                     </div>
