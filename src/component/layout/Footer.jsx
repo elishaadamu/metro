@@ -1,4 +1,5 @@
-import { FiInstagram, FiGithub, FiTwitter, FiFacebook } from "react-icons/fi";
+import { FiInstagram, FiTwitter, FiFacebook } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -13,14 +14,7 @@ export default function Footer() {
                     >
                         <FiInstagram size={35} />
                     </a>
-                    <a
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-color hover:-translate-y-1 text-sky-500 transition"
-                    >
-                        <FiGithub size={35} />
-                    </a>
+               
                     <a
                         href="https://twitter.com"
                         target="_blank"
@@ -40,36 +34,36 @@ export default function Footer() {
                 </div>
 
                 <div className="flex  justify-center md:space-x-8 my-12 text-sm text-gray-500 flex-wrap gap-4 font-semibold">
-                    <a
-                        href="/"
+                    <Link
+                        to="/"
                         className="text-color no-underline hover:text-sky-500 transition"
                     >
                         Home
-                    </a>
-                    <a
-                        href="/services"
+                    </Link>
+                    <Link
+                        to="/Plans/Metropolitan-Transportation-Plans"
                         className="text-color no-underline hover:text-sky-500 transition"
                     >
-                        Services
-                    </a>
-                    <a
-                        href="/about"
+                        Plans
+                    </Link>
+                    <Link
+                        to="/about/Social_Media"
                         className="text-color no-underline hover:text-sky-500 transition"
                     >
                         About
-                    </a>
-                    <a
-                        href="/terms"
+                    </Link>
+                    <Link
+                        to="/"
                         className="text-color no-underline hover:text-sky-500 transition"
                     >
                         Terms
-                    </a>
-                    <a
-                        href="/privacy"
+                    </Link>
+                    <Link
+                        to="/"
                         className="text-color no-underline hover:text-sky-500 transition"
                     >
                         Privacy Policy
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="text-center text-sm text-color">

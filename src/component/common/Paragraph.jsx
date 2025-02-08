@@ -19,7 +19,7 @@ function Paragraph({ content }) {
                     <a
                         key={index}
                         href={child.url}
-                        className="text-sky-500 hover:underline"
+                        className="text-sky-500 hover:underline truncate"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -55,7 +55,7 @@ function Paragraph({ content }) {
     }
 
     return (
-        <p className="mb-4 text-[1rem]">{renderContent(content.children)}</p>
+        <p className="mb-4 text-[1rem] ">{renderContent(content.children)}</p>
     );
 }
 
