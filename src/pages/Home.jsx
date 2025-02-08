@@ -1,7 +1,11 @@
 import React from "react";
+import { SlCalender } from "react-icons/sl";
+import { FaLocationDot } from "react-icons/fa6";
+
 import Navbar from "../component/layout/Navbar";
 import Footer from "../component/layout/Footer";
 import { homeCards } from "../constant/homeCards";
+import { EVENTS } from "../constant/upComingEvent";
 import logo from "../assets/logo.png";
 
 function Home() {
@@ -86,6 +90,34 @@ function Home() {
                             January 15, 2025
                         </p>
                     </div>
+                </div>
+
+                <div className="mt-20">
+                    <h2 className=" text-2xl sm:text-3xl py-4 border-b">
+                        Upcoming Events
+                    </h2>
+                    {EVENTS?.map((event, i) => (
+                        <div key={i}>
+                            <a
+                                href={event.name.link}
+                                className="mt-6 block text-sky-500"
+                            >
+                                {event.name.title}
+                            </a>
+                            {event.date && (
+                                <p className="flex items-center gap-3 mt-4 ">
+                                    <SlCalender size={28} />
+                                    <span> {event.date} </span>
+                                </p>
+                            )}
+                            {event.location && (
+                                <p className="flex items-center gap-3 mt-4 ">
+                                    <FaLocationDot size={28} />
+                                    <span> {event.location}</span>
+                                </p>
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
 

@@ -19,7 +19,7 @@ function Paragraph({ content }) {
                     <a
                         key={index}
                         href={child.url}
-                        className="text-sky-500 hover:underline"
+                        className="text-sky-500 hover:underline truncate"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -35,7 +35,7 @@ function Paragraph({ content }) {
     const getHeadingClass = (level) => {
         switch (level) {
             case 1:
-                return "text-4xl font-bold mb-4";
+                return "text-4xl font-bold mb-4 ";
             case 2:
                 return "text-3xl font-bold mb-3";
             case 3:
@@ -55,7 +55,7 @@ function Paragraph({ content }) {
     }
 
     return (
-        <p className="mb-4 text-[1rem]">{renderContent(content.children)}</p>
+        <p className="mb-4 text-[1rem] ">{renderContent(content.children)}</p>
     );
 }
 
