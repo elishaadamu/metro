@@ -1,4 +1,7 @@
 import React from "react";
+import { SlCalender } from "react-icons/sl";
+import { FaLocationDot } from "react-icons/fa6";
+
 import Navbar from "../component/layout/Navbar";
 import Footer from "../component/layout/Footer";
 import { homeCards } from "../constant/homeCards";
@@ -86,6 +89,32 @@ function Home() {
                             January 15, 2025
                         </p>
                     </div>
+                </div>
+
+                <div>
+                    <div>
+                        <h2 className=" text-2xl sm:text-3xl py-4 border-b">
+                            {" "}
+                            Upcoming Events{" "}
+                        </h2>
+                        <div>
+                            <a href="https://nfrmpo.org/calendar/nfrmpo-technical-advisory-committee-tac-meeting-2025-02-19/"
+                            >
+                                NFRMPO Technical Advisory Committee (TAC)
+                                Meeting
+                            </a>
+                            <p className="flex items-center gap-3 mt-4 ">
+                                <SlCalender size={28} />
+                                <span> 19 Feb 2025 </span>
+                            </p>
+                            <p className="flex items-center gap-3 mt-4 ">
+                                <FaLocationDot size={28} />
+                                <span> 200 Peridot Avenue Loveland</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div></div>
                 </div>
             </div>
 

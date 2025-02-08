@@ -35,7 +35,7 @@ function Paragraph({ content }) {
     const getHeadingClass = (level) => {
         switch (level) {
             case 1:
-                return "text-4xl font-bold mb-4";
+                return "text-4xl font-bold mb-4 ";
             case 2:
                 return "text-3xl font-bold mb-3";
             case 3:
