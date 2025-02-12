@@ -97,25 +97,25 @@ import Paragraph from "../common/Paragraph";
 import Image from "../common/Image";
 import SectionLink from "../common/SectionLink";
 import List from "../common/List";
+import ContainImage from "../common/ContainImage";
 
 function PageSection({ content }) {
-    // console.log("content:", content.section_image);
+    console.log("content:", content.section_image);
 
     return (
         <div className="mb-8">
             {content.heading && <Heading>{content.heading}</Heading>}
-
             {content.paragraph &&
                 content.paragraph.map((para, index) => (
                     <Paragraph key={index} content={para} />
                 ))}
-
             {content.list && <List items={content.list} />}
-
             {content?.section_image && (
                 <Image src={content.section_image.url || "/placeholder.svg"} />
             )}
-
+            {content?.detailed_image && (
+                <ContainImage src={content.detailed_image.url || "/placeholder.svg"} />
+            )}
             {content?.link &&
                 content?.link?.map((link, index) => (
                     <SectionLink

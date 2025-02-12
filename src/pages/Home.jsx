@@ -40,7 +40,7 @@ function Home() {
                 {/* cards */}
                 <div className="mt-20 grid card-grid-temp gap-5">
                     {homeCards?.map((card, i) => (
-                        <div className="soft-bg rounded-xl p-4">
+                        <div key={i} className="soft-bg rounded-xl p-4">
                             <img
                                 src={card.image}
                                 className="h-[15rem] w-full object-contain rounded-lg"
