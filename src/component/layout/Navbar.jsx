@@ -245,7 +245,7 @@ export default function Navbar() {
     const location = useLocation();
 
     const { data, error, isLoading } = useNavItems();
-    const navItems = data?.data || [];
+    const navItems = data?.data.sort((a, b) => a.page_number - b.page_number) || [];
 
     useEffect(() => {
         if (isOpen) {
@@ -274,6 +274,7 @@ export default function Navbar() {
         setDropdownOpen(null);
         setIsOpen(false);
     };
+    // console.log(data);
 
     const renderNavItems = () => (
         <>

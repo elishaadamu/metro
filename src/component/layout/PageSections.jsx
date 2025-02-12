@@ -15,7 +15,7 @@
 import PageSection from "./PageSection";
 
 function PageSections({ sections }) {
-    // console.log("PageSections props:", sections);
+    console.log("PageSections props:", sections);
 
     if (!sections || sections.length === 0) {
         return <div>No content available.</div>;
