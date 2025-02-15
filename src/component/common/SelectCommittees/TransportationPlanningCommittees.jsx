@@ -7,7 +7,7 @@ function TransportationPlanningCommittees() {
       <h2 class=" text-[20px] font-semibold mb-4">
         Transportation Planning Committees
       </h2>
-      <div class="flex gap-6 overflow-auto">
+      <div class="flex flex-col md:flex-row lg:flex-row gap-6 overflow-auto">
         <div class="flex flex-col gap-4">
           <div className="text-[13px]">
             <span>Dan Naunheim (Co-Chair)</span>
@@ -26,8 +26,8 @@ function TransportationPlanningCommittees() {
           </a>
         </div>
         <div class="w-full">
-          <h3 class="mb-3 text-2xl font-semibold">Missouri</h3>
-          <div class="grid grid-cols-4 gap-2 text-[14px] ">
+          <h3 class="mb-3 text-xl font-semibold">Missouri</h3>
+          <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4  gap-2 text-[12px] md:text-[14px] lg:md:text-[14px] ">
             <p>Rich Bradley</p>
             <p>Amanda Brauer</p>
             <p>Jessica Gershman</p>
@@ -40,7 +40,7 @@ function TransportationPlanningCommittees() {
             <p>Dan Naunheim</p>
             <p>Chris Poehler</p>
             <p>John Shrewsbury</p>
-            <h3 class="mb-3 text-2xl font-semibold">Illinois</h3>
+            <h3 class="mb-3 text-xl font-semibold">Illinois</h3>
             <p>Cindy Simmons</p>
             <p>Kirk Brown</p>
             <p>Stan Darter</p>
