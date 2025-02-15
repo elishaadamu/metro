@@ -239,151 +239,155 @@ import { useNavItems } from "../../hooks/useNavItems";
 import Loading from "../common/Loading";
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState(null);
-    const menuRef = useRef(null);
-    const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(null);
+  const menuRef = useRef(null);
+  const location = useLocation();
 
-    const { data, error, isLoading } = useNavItems();
-    const navItems = data?.data.sort((a, b) => a.page_number - b.page_number) || [];
+  const { data, error, isLoading } = useNavItems();
+  const navItems =
+    data?.data.sort((a, b) => a.page_number - b.page_number) || [];
 
-    useEffect(() => {
-        if (isOpen) {
-            gsap.fromTo(
-                menuRef.current,
-                { y: -50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
-            );
+  useEffect(() => {
+    if (isOpen) {
+      gsap.fromTo(
+        menuRef.current,
+        { y: -50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
+      );
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    setIsOpen(false);
+    setDropdownOpen(null);
+  }, [location]); // Removed unnecessary dependency: location.pathname
+
+  if (isLoading) return <Loading msg="Loading Navigation" />;
+  if (error) return <p className="text-red-500">Error loading navigation</p>;
+
+  const handleDropdownToggle = (index, e) => {
+    e.preventDefault();
+    setDropdownOpen(dropdownOpen === index ? null : index);
+  };
+
+  const handleSubItemClick = () => {
+    setDropdownOpen(null);
+    setIsOpen(false);
+  };
+  // console.log(data);
+
+  const renderNavItems = () => (
+    <>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          `hover:text-sky-500 text-color hover:bg-gray-600 w-full md:hover:bg-transparent py-2 block font-semibold ${
+            isActive ? "text-sky-500" : ""
+          }`
         }
-    }, [isOpen]);
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/committees"
+        className={({ isActive }) =>
+          `hover:text-sky-500 text-color hover:bg-gray-600 w-full md:hover:bg-transparent py-2 block font-semibold ${
+            isActive ? "text-sky-500" : ""
+          }`
+        }
+      >
+        About
+      </NavLink>
 
-    useEffect(() => {
-        setIsOpen(false);
-        setDropdownOpen(null);
-    }, [location]); // Removed unnecessary dependency: location.pathname
-
-    if (isLoading) return <Loading msg="Loading Navigation" />;
-    if (error) return <p className="text-red-500">Error loading navigation</p>;
-
-    const handleDropdownToggle = (index, e) => {
-        e.preventDefault();
-        setDropdownOpen(dropdownOpen === index ? null : index);
-    };
-
-    const handleSubItemClick = () => {
-        setDropdownOpen(null);
-        setIsOpen(false);
-    };
-    // console.log(data);
-
-    const renderNavItems = () => (
-        <>
+      {navItems.map((item, index) => (
+        <div
+          key={index}
+          className="relative md:flex items-center font-semibold"
+        >
+          {item?.sub_page.length > 0 ? (
             <NavLink
-                to="/"
-                className={({ isActive }) =>
-                    `hover:text-sky-500 text-color hover:bg-gray-600 w-full md:hover:bg-transparent py-2 block font-semibold ${
-                        isActive ? "text-sky-500" : ""
-                    }`
-                }
+              to={item?.page_path}
+              className={({ isActive }) =>
+                `hover:text-sky-500 text-color flex items-center capitalize justify-between md:justify-center hover:bg-gray-600 md:hover:bg-transparent w-full py-2 text-nowrap ${
+                  isActive ? "text-sky-500" : ""
+                }`
+              }
+              onClick={(e) => handleDropdownToggle(index, e)}
             >
-                Home
+              {item?.page_name}
+              <FiChevronDown
+                size={16}
+                className={`ml-1 transition-transform duration-300 ${
+                  dropdownOpen === index ? "rotate-180" : "rotate-0"
+                }`}
+              />
             </NavLink>
-
-            {navItems.map((item, index) => (
-                <div
-                    key={index}
-                    className="relative md:flex items-center font-semibold"
+          ) : (
+            <NavLink
+              to={item?.page_path}
+              className={({ isActive }) =>
+                `hover:text-sky-500 text-color no-underline text-nowrap ${
+                  isActive ? "text-sky-500" : ""
+                }`
+              }
+            >
+              {item?.page_name}
+            </NavLink>
+          )}
+          {item?.sub_page.length > 0 && dropdownOpen === index && (
+            <div className="md:absolute md:bg-color md:w-fit top-[2.6rem] right-0   ">
+              {item?.sub_page.map((subItem, subIndex) => (
+                <NavLink
+                  key={subIndex}
+                  to={item.page_path + subItem?.sub_page_path}
+                  className={({ isActive }) =>
+                    `block px-4 py-2 text-color hover:bg-gray-700 hover:text-sky-500 no-underline border-l ml-2 md:ml-0 md:border-none md:text-nowrap ${
+                      isActive ? "text-blue-400" : ""
+                    }`
+                  }
+                  onClick={handleSubItemClick}
                 >
-                    {item?.sub_page.length > 0 ? (
-                        <NavLink
-                            to={item?.page_path}
-                            className={({ isActive }) =>
-                                `hover:text-sky-500 text-color flex items-center capitalize justify-between md:justify-center hover:bg-gray-600 md:hover:bg-transparent w-full py-2 text-nowrap ${
-                                    isActive ? "text-sky-500" : ""
-                                }`
-                            }
-                            onClick={(e) => handleDropdownToggle(index, e)}
-                        >
-                            {item?.page_name}
-                            <FiChevronDown
-                                size={16}
-                                className={`ml-1 transition-transform duration-300 ${
-                                    dropdownOpen === index
-                                        ? "rotate-180"
-                                        : "rotate-0"
-                                }`}
-                            />
-                        </NavLink>
-                    ) : (
-                        <NavLink
-                            to={item?.page_path}
-                            className={({ isActive }) =>
-                                `hover:text-sky-500 text-color no-underline text-nowrap ${
-                                    isActive ? "text-sky-500" : ""
-                                }`
-                            }
-                        >
-                            {item?.page_name}
-                        </NavLink>
-                    )}
-                    {item?.sub_page.length > 0 && dropdownOpen === index && (
-                        <div className="md:absolute md:bg-color md:w-fit top-[2.6rem] right-0   ">
-                            {item?.sub_page.map((subItem, subIndex) => (
-                                <NavLink
-                                    key={subIndex}
-                                    to={item.page_path + subItem?.sub_page_path}
-                                    className={({ isActive }) =>
-                                        `block px-4 py-2 text-color hover:bg-gray-700 hover:text-sky-500 no-underline border-l ml-2 md:ml-0 md:border-none md:text-nowrap ${
-                                            isActive ? "text-blue-400" : ""
-                                        }`
-                                    }
-                                    onClick={handleSubItemClick}
-                                >
-                                    {subItem?.sub_page_name}
-                                </NavLink>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            ))}
-        </>
-    );
+                  {subItem?.sub_page_name}
+                </NavLink>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </>
+  );
 
-    return (
-        <>
-            <nav className="text-color fixed top-4 left-0 w-full z-50 px-4 sm:px-8">
-                <div className="px-4 py-2 backdrop-blur-md max-w-[69rem] mx-auto flex z-[999] justify-between gap-4 items-center rounded-4xl bg-[#1e2a3a]/50">
-                    <NavLink to="/" className="h-[2.7rem] aspect-square">
-                        <img
-                            src={logo}
-                            alt="Logo"
-                            className="object-cover w-full h-full rounded-full"
-                        />
-                    </NavLink>
+  return (
+    <>
+      <nav className="text-color fixed top-4 left-0 w-full z-50 px-4 sm:px-8">
+        <div className="px-4 py-2 backdrop-blur-md max-w-[69rem] mx-auto flex z-[999] justify-between gap-4 items-center rounded-4xl bg-[#1e2a3a]/50">
+          <NavLink to="/" className="h-[2.7rem] aspect-square">
+            <img
+              src={logo}
+              alt="Logo"
+              className="object-cover w-full h-full rounded-full"
+            />
+          </NavLink>
 
-                    {/* =========================== */}
-                    <div className="hidden md:flex space-x-6">
-                        {renderNavItems()}
-                    </div>
+          {/* =========================== */}
+          <div className="hidden md:flex space-x-6">{renderNavItems()}</div>
 
-                    <button
-                        className="md:hidden"
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-                    </button>
-                </div>
+          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
 
-                {/* =========================== */}
-                {isOpen && (
-                    <div
-                        ref={menuRef}
-                        className=" soft-bg py-8 px-4 mt-4 rounded-2xl md:hidden overflow-y-auto"
-                    >
-                        {renderNavItems()}
-                    </div>
-                )}
-            </nav>
-        </>
-    );
+        {/* =========================== */}
+        {isOpen && (
+          <div
+            ref={menuRef}
+            className=" soft-bg py-8 px-4 mt-4 rounded-2xl md:hidden overflow-y-auto"
+          >
+            {renderNavItems()}
+          </div>
+        )}
+      </nav>
+    </>
+  );
 }
