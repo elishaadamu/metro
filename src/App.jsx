@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Committees from "./pages/about/Committees";
 import Employees from "./pages/about/Employees";
 import Federalcertification from "./pages/about/Federalcertification";
+import SelectCommittees from "./pages/about/SelectCommittees";
 import PageTemplate from "./pages/PageTemplate"; // Template for main pages
 import SubPageTemplate from "./pages/SubPageTemplate"; // Template for sub-pages
 import ScrollToTop from "./component/common/ScrollToTop";
@@ -28,6 +29,7 @@ function App() {
           path="/Federalcertification"
           element={<Federalcertification />}
         />
+        <Route path="/selectcommittees" element={<SelectCommittees />} />
 
         {/* Dynamic Routes for Pages */}
         {pages.map((page) => (

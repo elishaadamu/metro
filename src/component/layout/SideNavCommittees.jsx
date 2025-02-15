@@ -14,16 +14,6 @@ function SideNav() {
       >
         Committees
       </NavLink>
-      <NavLink
-        to="/selectcommittees"
-        className={({ isActive }) =>
-          `hover:text-sky-500 text-color hover:bg-gray-600 w-full text-[12px] md:hover:bg-transparent pb-2 ml-2 block font-semibold ${
-            isActive ? "text-sky-500" : ""
-          }`
-        }
-      >
-        - Select Committees
-      </NavLink>
       <hr />
       <NavLink
         to="/employees"

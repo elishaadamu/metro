@@ -1,7 +1,7 @@
 import Navbar from "../../component/layout/Navbar";
 import Footer from "../../component/layout/Footer";
 import SideNav from "../../component/layout/SideNav";
-import AdvisoryCommittees from "../../component/common/AdvisoryCommittees";
+import AdvisoryCommittees from "../../component/common/SelectCommittees/AdvisoryCommittees";
 
 const Committees = () => {
   return (
